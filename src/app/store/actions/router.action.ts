@@ -10,8 +10,8 @@ export class Go implements Action {
   constructor(
     public payload: {
       path: any[];
-      query?: object;
-      extras?: NavigationExtras;
+      query: object;
+      extras: NavigationExtras;
     }
   ) {}
 }
