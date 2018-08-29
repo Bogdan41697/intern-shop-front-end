@@ -4,11 +4,14 @@
       <button class="header-btn" mat-button>Shop</button>
     </a>
     <span class="spacer"></span>
-    <a class="btn-container" routerLink="/login">
+    <a *ngIf="!(isAuthorized$ | async)" class="btn-container" routerLink="/login">
       <button class="header-btn" mat-button>Sign In</button>
     </a>
-    <a class="btn-container" routerLink="/register">
+    <a *ngIf="!(isAuthorized$ | async)" class="btn-container" routerLink="/register">
       <button class="header-btn" mat-button>Sign Up</button>
+    </a>
+    <a *ngIf="(isAuthorized$ | async)" class="btn-container" (click)="signOut()">
+      <button class="header-btn" mat-button>Sign Out</button>
     </a>
   </mat-toolbar-row>
 </mat-toolbar>

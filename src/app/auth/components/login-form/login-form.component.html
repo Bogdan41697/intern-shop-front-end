@@ -1,4 +1,5 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div *ngIf="error | async" class="error">{{ error | async }}</div>
+<form [formGroup]="loginForm" (ngSubmit)=login.emit(loginForm.value)>
   <mat-grid-list cols="1" rowHeight="5em">
     <mat-grid-tile>
       Sign In
@@ -6,12 +7,20 @@
     <!--Login field-->
     <mat-grid-tile>
       <mat-form-field>
+        <div *ngIf="loginForm.controls['login'].invalid && (loginForm.controls['login'].dirty || loginForm.controls['login'].touched)" class="mat-error error_msg">
+          <div [hidden]="!loginForm.controls['login'].errors.required">Login is required.</div>
+          <div [hidden]="!loginForm.controls['login'].errors.minlength">Login should contain at least 8 characters.</div>
+        </div>
         <input matInput formControlName="login"  required placeholder="Login" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
     </mat-grid-tile>
     <!--Password field-->
     <mat-grid-tile>
       <mat-form-field>
+        <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="mat-error error_msg">
+          <div [hidden]="!loginForm.controls['password'].errors.required">Password is required.</div>
+          <div [hidden]="!loginForm.controls['password'].errors.minlength">Password should contain at least 8 characters.</div>
+        </div>
         <input matInput formControlName="password" required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
     </mat-grid-tile>

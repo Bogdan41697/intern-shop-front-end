@@ -1,3 +1,1 @@
-/**
- * Created by macbookpro on 23.08.2018.
- */
+export * from './auth.actions';

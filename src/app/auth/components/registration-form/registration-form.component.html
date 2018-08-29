@@ -1,4 +1,4 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registrationForm" (ngSubmit)="register.emit(registrationForm.value)" >
   <mat-grid-list cols="1" rowHeight="5em">
     <mat-grid-tile>
       Sign Up
@@ -6,12 +6,20 @@
     <!--Login field-->
     <mat-grid-tile>
       <mat-form-field>
+        <div *ngIf="registrationForm.controls['login'].invalid && (registrationForm.controls['login'].dirty || registrationForm.controls['login'].touched)" class="mat-error error_msg">
+          <div [hidden]="!registrationForm.controls['login'].errors.required">Login is required.</div>
+          <div [hidden]="!registrationForm.controls['login'].errors.minlength">Login should contain at least 8 characters.</div>
+        </div>
         <input matInput formControlName="login"  required placeholder="Login" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
     </mat-grid-tile>
     <!--Password field-->
     <mat-grid-tile>
       <mat-form-field>
+        <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="mat-error error_msg">
+          <div [hidden]="!registrationForm.controls['password'].errors.required">Password is required.</div>
+          <div [hidden]="!registrationForm.controls['password'].errors.minlength">Password should contain at least 8 characters.</div>
+        </div>
         <input matInput formControlName="password" required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
     </mat-grid-tile>
