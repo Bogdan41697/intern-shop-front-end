@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 import { Go } from '../store';
+
+// import {  } from '../auth/store';
 
 @Injectable()
 export class RouteGuard implements CanActivate {
-  // constructor(private store: Store<State>) {}
+  constructor(private store: Store<any/* fromTeam.TeamState */>) {}
 
-  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-  //   const observable = this.store.select(isAuthenticated);
+  canActivate(): Observable<boolean> {
+    return this.store.pipe(
+      select(''/* fromTeam.getAuthStatus */),
+      map((authed: any) => {
+        if (!authed) {
+          this.store.dispatch(new Go({ path: ['/login'] }));
 
-  //   observable.subscribe(authenticated => {
-  //     if (!authenticated) {
-  //       this.store.dispatch(new Go({ path: ['/register'] }));
-  //     }
-  //   });
+          return false;
+        }
 
-  //   return observable;
-  // }
+        return true;
+      })
+    );
+  }
 }
