@@ -1,5 +1,5 @@
-// import { RouteGuard } from './route.guard';
+import { RouteGuard } from './route.guard';
 
-// export const guards: any[] = [RouteGuard];
+export const guards: any[] = [RouteGuard];
 
-// export * from './route.guard';
+export * from './route.guard';
