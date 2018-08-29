@@ -1,25 +1,23 @@
-<mat-toolbar *ngFor="let product of products; let i = index;">
-<div class="cart-img-wrap">
-<img src="{{product.thumbnail}}" alt="Photo of a Shiba Inu">
-</div>
-<div class="cart-info">
-<div class="cart-top-line mat-line">
-    <h4><strong>{{product.title}}</strong></h4>
-    <span class="cart-price">{{product.price | number: '1.2'}} $</span>
-    <input
-        matInput
-        [(ngModel)]="product.quantity"
-        type="number"
-        id="count"
-        min="1"
-        [value]="1"
-    />
-    <span class="cart-item-total-price">
-        <strong>${{product.price*product.quantity | number: '1.2'}}</strong>
-    </span>
-</div>
-<div class="cart-bottom-line mat-line">
-    <button mat-button color="primary" (click)="remove(i)">Remove from cart</button>
-</div>
-</div>      
+<mat-toolbar *ngFor="let id of (ids$ | async); let i = index;">
+    <div class="cart-img-wrap">
+        <img src="{{(products$ | async)[id]?.product.thumbnail}}" alt="img">
+    </div>
+    <div class="cart-info">
+        <div class="cart-top-line mat-line">
+            <h4>
+                <strong>{{(products$ | async)[id]?.product.title}}</strong>
+            </h4>
+            <span class="cart-price">{{(products$ | async)[id]?.product.price | number: '1.2'}} $</span>
+            <button mat-raised-button  (click)="decrease(id)" disabled="{{(products$ | async)[id]?.quantity < 2}}">-</button>
+            <div>{{ (products$ | async)[id].quantity }}</div>    
+            <button mat-raised-button (click)="increase(id)">+</button>
+            <span class="cart-item-total-price">
+                <strong>${{(products$ | async)[id].product.price * (products$ | async)[id].quantity | number: '1.2'}}</strong>
+            </span>
+        </div>
+        <div class="cart-bottom-line mat-line">
+            <button mat-button color="primary" (click)="remove(id)">Remove from cart</button>
+        </div>
+    </div>      
 </mat-toolbar>
+<div class="empty-cart" *ngIf="(ids$ | async).length === 0">Your cart is empty</div>

@@ -3,18 +3,23 @@
     <mat-toolbar-row class="cart-header">
       <h2>Items in Your Bag</h2>
     </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="!isLoaded">
-      Loading...
+    <mat-toolbar-row>
+      <app-cart-items 
+        class="cart-items-wrap" 
+        [products$]="products$" 
+        [ids$]="ids$" 
+        (quantityChange)="quantityChange($event)"
+        (removeFromCart)="removeFromCart($event)"
+        >
+      </app-cart-items>
     </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="isLoaded">
-      <app-cart-items class="cart-items-wrap" [products]="products"></app-cart-items>
-      <p class="empty-cart" *ngIf="getCountIsEmpty() === 0">Your cart is empty</p>
-    </mat-toolbar-row>
-    <mat-toolbar-row class="total-row" *ngIf="getCountIsEmpty() > 0">
-        <app-cart-total class="total" [products]="products"></app-cart-total>
+    <mat-toolbar-row class="total-row" *ngIf="(ids$ | async).length != 0">
+      <button mat-raised-button (click)="clearCart()">Clear cart</button>
+      <app-cart-total class="total"></app-cart-total>
     </mat-toolbar-row>
     <mat-toolbar-row class="checkout">
-        <button mat-raised-button color="primary">Checkout</button>
+      <button mat-raised-button color="primary" *ngIf="(ids$ | async).length != 0">Checkout</button>
     </mat-toolbar-row>
   </mat-toolbar>  
 </mat-toolbar>
+<!-- <div *ngIf="!ids$.length">Your cart is empty</div> -->

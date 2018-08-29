@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, MetaReducer } from '@ngrx/store';
+
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -17,6 +18,7 @@ import { CartModule } from './cart/cart.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotificationService } from './shared/services/notification';
 
 const environment: { development: boolean; production: boolean; } = {
   development: true,
@@ -47,7 +49,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     environment.development ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    NotificationService
   ],
   bootstrap: [
     AppComponent

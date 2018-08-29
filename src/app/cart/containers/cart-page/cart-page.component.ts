@@ -1,39 +1,42 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-
-import { ProductsService } from '../../services/cart.service';
-import { Product } from '../../../shared/models/product';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { CartState, CartItem } from '../../store/reducers/cart.reducer';
+import * as cartSelectors from '../../store/selectors/cart.selector';
+import * as cartActions from '../../store/actions';
 
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css']
 })
-export class CartPageComponent implements OnInit, OnDestroy {
-  public products: Product[] = [];
+export class CartPageComponent implements OnInit {
+  products$: Observable<{[key: string]: CartItem}>;
+  ids$: Observable< string[] >;
   subs: Subscription;
-  public isLoaded: boolean = false;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private store: Store<CartState>) { }
 
   ngOnInit(): void {
-    this.subs = this.productsService.getProductsToCart()
-      .subscribe((data: Product[]) => this.products = data);
-    this.isLoaded = true;
+    this.products$ = this.store.select(cartSelectors.getCartProducts);
+    this.ids$ = this.store.select(cartSelectors.getCartList);
   }
 
-  getCountIsEmpty(): number {
-    return this.products.reduce((total: number, e: Product) => {
-      total += e.price;
-
-      return total;
-    }, 0);
-  }
-
-  ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
+  quantityChange(event: any): void {
+    if (event.type === 'decrease') {
+      this.store.dispatch(new cartActions.Decrease(event.id));
+    } else if (event.type === 'increase') {
+      this.store.dispatch(new cartActions.Increase(event.id));
     }
+  }
+
+  removeFromCart(event: any): void {
+    this.store.dispatch(new cartActions.RemoveProductFromCart(event.id));
+  }
+
+  clearCart(): void {
+    this.store.dispatch(new cartActions.ClearCart());
   }
 
 }

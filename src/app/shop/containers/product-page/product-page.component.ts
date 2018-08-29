@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { CartState } from '../../../cart/store/reducers';
+import { CartState } from '../../../cart/store/reducers/cart.reducer';
 import { AddToCart } from './../../../cart/store/actions';
 import { Product } from '../../../shared/models/product.model';
 
@@ -21,6 +21,7 @@ export class ProductPageComponent implements OnInit {
     title: 'Google pixel 2',
     price: '799.99',
     category_id: '1',
+    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Samsung_Galaxy_S9%2B.png',
     category_title: 'phone',
     stock: 77,
     description:
