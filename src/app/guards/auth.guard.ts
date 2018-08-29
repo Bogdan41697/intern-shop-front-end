@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as fromAuth from '../auth/store';
 
 @Injectable()
-export class RouteGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   authorized$: Observable<boolean>;
 
   constructor(private store: Store<any>) {

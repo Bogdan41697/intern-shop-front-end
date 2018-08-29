@@ -14,8 +14,8 @@ export class NotificationsEffects {
 
     @Effect()
     notificate$: Observable<Action> = this.actions$
-        .ofType(notificationActions.NOTIFICATION_NEW)
         .pipe(
+            ofType(notificationActions.NOTIFICATION_NEW),
             switchMap((action: notificationActions.AppNotificationShow): any => {
                 return this.service.showNotification(
                     action.payload.message,

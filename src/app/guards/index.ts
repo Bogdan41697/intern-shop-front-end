@@ -1,5 +1,7 @@
-import { RouteGuard } from './route.guard';
+import { AuthGuard } from './auth.guard';
+import { UnauthGuard } from './unauth.guard';
 
-export const guards: any[] = [RouteGuard];
+export const guards: any[] = [AuthGuard, UnauthGuard];
 
-export * from './route.guard';
+export * from './auth.guard';
+export * from './unauth.guard';

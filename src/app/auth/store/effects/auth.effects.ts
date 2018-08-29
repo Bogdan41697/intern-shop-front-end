@@ -4,14 +4,14 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import * as authActions from '../actions/auth.actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationErrorAction, AuthenticationSuccessAction, GetUserInfoFailAction,
   GetUserInfoSuccessAction } from '../actions/auth.actions';
 import { User } from '../../models/user';
+import { Go } from '../../../store';
 
 @Injectable()
 export class AuthEffects {
-
   constructor(private actions$: Actions, private authService: AuthService) {}
 
   // effects go here
@@ -88,4 +88,19 @@ export class AuthEffects {
     })
   );
 
+  @Effect()
+  getUserInfoSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(authActions.GET_USER_INFO_SUCCESS),
+    map(() => {
+      return new Go({ path: ['/shop'] });
+    })
+  );
+
+  @Effect()
+  signOut$: Observable<Action> = this.actions$.pipe(
+    ofType(authActions.SIGN_OUT),
+    map(() => {
+      return new Go({ path: ['/login'] });
+    })
+  );
 }
