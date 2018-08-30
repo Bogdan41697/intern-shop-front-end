@@ -1,3 +1,4 @@
+import * as fromServices from './services';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -5,6 +6,10 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    fromServices.ProductsService,
+    fromServices.CategoriesService
+  ]
 })
 export class SharedModule { }

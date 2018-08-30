@@ -19,7 +19,7 @@ export class ProductPageComponent implements OnInit {
   product: Product = {
     id: '5b82dba680a7ce48203557da',
     title: 'Google pixel 2',
-    price: '799.99',
+    price: 799.99,
     category_id: '1',
     thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Samsung_Galaxy_S9%2B.png',
     category_title: 'phone',

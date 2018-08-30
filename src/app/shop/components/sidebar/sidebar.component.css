@@ -22,7 +22,8 @@
   max-width: 500px;
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .full-width {
@@ -31,4 +32,18 @@
 
 .half-width {
   width: 48%;
+}
+
+.submit {
+  transition: all.2s ease;
+  border: 1px solid #3f51b5;
+  padding: 10px 20px;
+  border-radius: 2px;
+  background: #9ca9f3;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: #3f51b5;
+  color: #fff;
 }

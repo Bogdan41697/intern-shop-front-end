@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationService } from './shared/services/notification';
+import { SharedModule } from './shared/shared.module';
 
 const environment: { development: boolean; production: boolean; } = {
   development: true,
@@ -38,7 +40,9 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    HttpClientModule,
     AppRoutingModule,
+    SharedModule,
     ShopModule,
     AuthModule,
     CartModule,

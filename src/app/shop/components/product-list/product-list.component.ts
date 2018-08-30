@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Product } from '../../../shared/models/product.model';
 

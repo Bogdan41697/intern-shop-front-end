@@ -24,7 +24,7 @@ export const initialCartState: CartState = {
                 title: 'product',
                 description: 'product',
                 stock: 1,
-                price: '99.99',
+                price: 99.99,
                 category_id: 'asdsadad',
                 category_title: 'asdasdasd'
 
@@ -38,7 +38,7 @@ export const initialCartState: CartState = {
                 title: 'product',
                 description: 'product',
                 stock: 1,
-                price: '99.99',
+                price: 99.99,
                 category_id: 'asdsadad',
                 category_title: 'asdasdasd'
             },

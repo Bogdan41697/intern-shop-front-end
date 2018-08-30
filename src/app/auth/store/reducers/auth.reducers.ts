@@ -46,6 +46,17 @@ export function reducer(state: AuthState = initialState, action: Actions): AuthS
         error: null
       };
 
+    case fromActions.SIGN_UP_SUCCESS:
+      return <AuthState>{
+        ...state,
+        isAuthorized: true,
+        loading: false,
+        currentUser: {
+          token: action['payload'].token
+        },
+        error: null
+      };
+
     case fromActions.SIGN_UP:
       return <AuthState>{
         ...state,
@@ -97,9 +108,9 @@ export function reducer(state: AuthState = initialState, action: Actions): AuthS
   }
 }
 
-export const getIsAuthenticated: any = (state: AuthState): boolean => state.isAuthorized;
-export const getIsAuthenticatedLoaded: any = (state: AuthState): boolean => state.loaded;
-export const getAuthenticatedUser: any = (state: AuthState): any => state.currentUser;
-export const getAuthenticationError: any = (state: AuthState): string => state.error;
-export const getIsLoading: any = (state: AuthState): boolean => state.loading;
-export const getUserInfo: any = (state: AuthState): any => state.currentUser;
+// export const getIsAuthenticated: any = (state: AuthState): boolean => state.isAuthorized;
+// export const getIsAuthenticatedLoaded: any = (state: AuthState): boolean => state.loaded;
+// export const getAuthenticatedUser: any = (state: AuthState): any => state.currentUser;
+// export const getAuthenticationError: any = (state: AuthState): string => state.error;
+// export const getIsLoading: any = (state: AuthState): boolean => state.loading;
+// export const getUserInfo: any = (state: AuthState): any => state.currentUser;

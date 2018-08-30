@@ -3,33 +3,33 @@
     <mat-grid-tile>
       Sign Up
     </mat-grid-tile>
-    <!--Login field-->
     <mat-grid-tile>
       <mat-form-field>
         <div *ngIf="registrationForm.controls['login'].invalid && (registrationForm.controls['login'].dirty || registrationForm.controls['login'].touched)" class="mat-error error_msg">
           <div [hidden]="!registrationForm.controls['login'].errors.required">Login is required.</div>
-          <div [hidden]="!registrationForm.controls['login'].errors.minlength">Login should contain at least 8 characters.</div>
+          <div [hidden]="!registrationForm.controls['login'].errors.minlength">Login should be at least 8 letter long.</div>
         </div>
         <input matInput formControlName="login"  required placeholder="Login" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
     </mat-grid-tile>
-    <!--Password field-->
     <mat-grid-tile>
+      <div formGroupName="password_group" class="password_group">
       <mat-form-field>
-        <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="mat-error error_msg">
-          <div [hidden]="!registrationForm.controls['password'].errors.required">Password is required.</div>
-          <div [hidden]="!registrationForm.controls['password'].errors.minlength">Password should contain at least 8 characters.</div>
+        <div *ngIf="registrationForm['controls'].password_group['controls'].password.invalid
+                  && registrationForm['controls'].password_group['controls'].password.touched" class="mat-error error_msg">
+          Password should be at least 8 letter long
         </div>
         <input matInput formControlName="password" required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
-    </mat-grid-tile>
-    <!--Confirm password field-->
-    <mat-grid-tile>
-      <mat-form-field>
-        <input matInput required type="password" placeholder="Confirm password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" >
+      <mat-form-field >
+        <div *ngIf="registrationForm['controls'].password_group.invalid
+          && registrationForm['controls'].password_group['controls'].password_confirm.touched" class="mat-error error_msg" >
+          Confirm password doesn't match
+        </div>
+        <input matInput required type="password" formControlName="password_confirm" placeholder="Confirm password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" >
       </mat-form-field>
+      </div>
     </mat-grid-tile>
-    <!--Button field-->
     <mat-grid-tile>
       <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Sign up</button>
     </mat-grid-tile>

@@ -1,6 +1,8 @@
 export class FiltersObject {
   constructor(
-    public category: string
+    public price?: {from: number, to: number},
+    public category?: string,
+    public stock?: string
   ) {
   }
 }

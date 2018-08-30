@@ -5,3 +5,7 @@
 .app-product-list__link{
     text-decoration: none;
 }
+
+ul {
+  list-style: none;
+}

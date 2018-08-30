@@ -12,8 +12,12 @@ export class RegistrationViewComponent {
 
   constructor(private store: Store<AuthState>) { }
 
-  handleRegistration (payload: { login: string, password: string }): void {
-    this.store.dispatch(new SignUpAction(payload));
+  handleRegistration (payload: { login: string, password_group: {password: string} }): void {
+    const registerData: {login: string, password: string} = {
+      login: payload.login,
+      password: payload.password_group.password
+    };
+    this.store.dispatch(new SignUpAction(registerData));
   }
 
 }
