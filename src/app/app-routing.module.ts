@@ -12,14 +12,13 @@ const routes: Routes = [
   { path: 'login', component: LoginViewComponent },
   { path: 'register', component: RegistrationViewComponent },
   { path: 'shop', component: ShopPageComponent, canActivate: [fromGuards.AuthGuard] },
-  { path: 'cart', component: CartPageComponent, canActivate: [fromGuards.AuthGuard] },
-  { path: '', redirectTo: 'shop', pathMatch: 'full' },
+  { path: 'cart', component: CartPageComponent },
   { path: '**', redirectTo: 'shop', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
   exports: [
     RouterModule

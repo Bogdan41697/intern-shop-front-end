@@ -18,7 +18,12 @@
       <app-cart-total class="total"></app-cart-total>
     </mat-toolbar-row>
     <mat-toolbar-row class="checkout">
-      <button mat-raised-button color="primary" *ngIf="(ids$ | async).length != 0">Checkout</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openCheckout()"
+        *ngIf="(ids$ | async).length != 0"
+      >Checkout</button>
     </mat-toolbar-row>
   </mat-toolbar>  
 </mat-toolbar>

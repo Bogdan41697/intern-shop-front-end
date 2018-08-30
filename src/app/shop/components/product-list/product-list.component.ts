@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 
-import Product from '../../models/product';
+import { Product } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-list',

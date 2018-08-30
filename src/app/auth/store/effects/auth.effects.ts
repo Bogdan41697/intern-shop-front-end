@@ -89,8 +89,8 @@ export class AuthEffects {
   );
 
   @Effect()
-  getUserInfoSuccess$: Observable<Action> = this.actions$.pipe(
-    ofType(authActions.GET_USER_INFO_SUCCESS),
+  authSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(authActions.AUTHENTICATE_SUCCESS || authActions.SIGN_UP),
     map(() => new Go({ path: ['/shop'] }))
   );
 

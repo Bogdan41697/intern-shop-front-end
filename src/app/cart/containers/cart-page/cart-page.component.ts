@@ -39,4 +39,19 @@ export class CartPageComponent implements OnInit {
     this.store.dispatch(new cartActions.ClearCart());
   }
 
+  openCheckout(): void {
+    const handler: any = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_vxuPixZMXI3nysGSQ8nvdOq0',
+      locale: 'auto',
+      token: (token: any): void => {
+        // todo
+      }
+    });
+
+    handler.open({
+      name: 'Demo Site',
+      description: '2 widgets',
+      amount: 2000
+    });
+  }
 }

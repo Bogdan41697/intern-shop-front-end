@@ -35,5 +35,4 @@ import { ProductPageComponent } from './containers/product-page/product-page.com
     ProductPageComponent
   ]
 })
-export class ShopModule {
-}
+export class ShopModule {}
