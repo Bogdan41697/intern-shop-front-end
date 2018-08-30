@@ -91,16 +91,12 @@ export class AuthEffects {
   @Effect()
   getUserInfoSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(authActions.GET_USER_INFO_SUCCESS),
-    map(() => {
-      return new Go({ path: ['/shop'] });
-    })
+    map(() => new Go({ path: ['/shop'] }))
   );
 
   @Effect()
   signOut$: Observable<Action> = this.actions$.pipe(
     ofType(authActions.SIGN_OUT),
-    map(() => {
-      return new Go({ path: ['/login'] });
-    })
+    map(() => new Go({ path: ['/login'] }))
   );
 }

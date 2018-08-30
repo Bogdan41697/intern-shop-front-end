@@ -9,8 +9,8 @@ import { LoginViewComponent } from './auth/containers/login-view/login-view.comp
 import { RegistrationViewComponent } from './auth/containers/registration-view/registration-view.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginViewComponent, canActivate: [fromGuards.UnauthGuard] },
-  { path: 'register', component: RegistrationViewComponent, canActivate: [fromGuards.UnauthGuard] },
+  { path: 'login', component: LoginViewComponent },
+  { path: 'register', component: RegistrationViewComponent },
   { path: 'shop', component: ShopPageComponent, canActivate: [fromGuards.AuthGuard] },
   { path: 'cart', component: CartPageComponent, canActivate: [fromGuards.AuthGuard] },
   { path: '', redirectTo: 'shop', pathMatch: 'full' },
@@ -25,8 +25,7 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    fromGuards.AuthGuard,
-    fromGuards.UnauthGuard
+    fromGuards.AuthGuard
   ]
 })
 export class AppRoutingModule {}

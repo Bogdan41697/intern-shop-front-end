@@ -21,4 +21,3 @@ export class HeaderComponent {
     this.store.dispatch(new SignOutAction());
   }
 }
-
