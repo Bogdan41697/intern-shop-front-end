@@ -10,6 +10,7 @@ import { reducers } from './store';
 import { CartPageComponent } from './containers/cart-page/cart-page.component';
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { CartTotalComponent } from './components/cart-total/cart-total.component';
+import { CheckoutPageComponent } from './containers/checkout-page/checkout-page.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { CartTotalComponent } from './components/cart-total/cart-total.component
   declarations: [
     CartPageComponent,
     CartItemsComponent,
-    CartTotalComponent
+    CartTotalComponent,
+    CheckoutPageComponent
   ]
 })
 export class CartModule {}
