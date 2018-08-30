@@ -20,7 +20,7 @@ export class CategoriesEffects {
       return this.fromServices
       .getCategories()
       .pipe(
-        map(categories => new categoriesActions.LoadCategoriesSuccess(categories)),
+        map(categories => new categoriesActions.LoadCategoriesSuccess(categories['categories'])),
         catchError(error => of(new categoriesActions.LoadCategoriesFail(error)))
       )
     })

@@ -11,6 +11,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { GridItemComponent } from './components/grid-item/grid-item.component';
 import { ProductPageComponent } from './containers/product-page/product-page.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -34,7 +35,8 @@ import { ProductsEffects } from './store/effects/products.effect';
     SidebarComponent,
     ShopPageComponent,
     ListItemComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    RecommendationsComponent
   ],
   exports: [
     SidebarComponent,

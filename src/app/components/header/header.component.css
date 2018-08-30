@@ -12,3 +12,36 @@
   color: #fff;
   text-decoration: none;
 }
+
+.cart {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  padding: 13px 13px 5px;
+  font-size: 11px;
+  line-height: 13px;
+  z-index: 1;
+  margin-left: 30px;
+}
+
+.cart > span {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  min-width: 23px;
+  height: 23px;
+  -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 21px;
+  color: #fff;
+  text-align: center;
+  background: #fb3f4c;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.cart .mat-icon {
+  font-size: 35px;
+}

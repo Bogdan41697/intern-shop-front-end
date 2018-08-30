@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 
 import { MaterialModule } from '../material/material.module';
+import { CartEffects } from './store/effects/cart.effects';
 import { reducers } from './store';
 
 import { CartPageComponent } from './containers/cart-page/cart-page.component';
@@ -18,7 +21,9 @@ import { CheckoutPageComponent } from './containers/checkout-page/checkout-page.
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forFeature('cart', reducers)
+    RouterModule,
+    StoreModule.forFeature('cart', reducers),
+    EffectsModule.forFeature([CartEffects])
   ],
   declarations: [
     CartPageComponent,

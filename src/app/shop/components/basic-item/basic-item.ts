@@ -4,9 +4,10 @@ import { Product } from '../../../shared/models/product.model';
 
 export default class BasicItem {
     @Input() product: Product;
-    @Output() emitAddToCart: EventEmitter<string> = new EventEmitter<string>();
+
+    @Output() emitAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
 
     private addToCart(): void {
-        this.emitAddToCart.emit(this.product.id);
+        this.emitAddToCart.emit(this.product);
     }
 }

@@ -20,4 +20,7 @@
         </div>
     </div>      
 </mat-toolbar>
-<div class="empty-cart" *ngIf="(ids$ | async).length === 0">Your cart is empty</div>
+<div class="empty-cart" *ngIf="(ids$ | async).length === 0">
+    Your cart is empty
+    <a mat-raised-button color="primary" [routerLink]="['','shop']">Return to shop</a>
+</div>

@@ -13,11 +13,11 @@ export class ProductListComponent {
   @Input() viewMode$: Observable<string>;
   @Input() products$: Observable<Product[]>;
 
-  @Output() emitAddToCart: EventEmitter<string> = new EventEmitter<string>();
+  @Output() emitAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
 
   private isListType: boolean = true;
 
-  private addToCart($event: string): void {
+  private addToCart($event: Product): void {
     this.emitAddToCart.emit($event);
   }
 }
