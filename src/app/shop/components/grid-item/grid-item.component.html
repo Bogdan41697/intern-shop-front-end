@@ -1,6 +1,10 @@
 <mat-card class="app-grid-item">
   <mat-card-header>
-    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-title>
+      <a [routerLink]="['', 'shop', 'products', product.id]">
+        {{product.title}}
+      </a>
+    </mat-card-title>
     <mat-card-subtitle>Category: {{product.category_title}}</mat-card-subtitle>
   </mat-card-header>  
   <mat-card-content>

@@ -7,12 +7,16 @@ import { ShopPageComponent } from './shop/containers/shop-page/shop-page.compone
 import { CartPageComponent } from './cart/containers/cart-page/cart-page.component';
 import { LoginViewComponent } from './auth/containers/login-view/login-view.component';
 import { RegistrationViewComponent } from './auth/containers/registration-view/registration-view.component';
+import { ProductPageComponent } from './shop/containers/product-page/product-page.component';
+import { CheckoutPageComponent } from './cart/containers/checkout-page/checkout-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginViewComponent },
   { path: 'register', component: RegistrationViewComponent },
   { path: 'shop', component: ShopPageComponent, canActivate: [fromGuards.AuthGuard] },
+  { path: 'shop/products/:id', component: ProductPageComponent },
   { path: 'cart', component: CartPageComponent },
+  { path: 'checkout', component: CheckoutPageComponent },
   { path: '**', redirectTo: 'shop', pathMatch: 'full' }
 ];
 

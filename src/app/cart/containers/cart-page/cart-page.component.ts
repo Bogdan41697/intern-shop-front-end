@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CartState, CartItem } from '../../store/reducers/cart.reducer';
 import * as cartSelectors from '../../store/selectors/cart.selector';
 import * as cartActions from '../../store/actions';
+import { Go } from '../../../store';
 
 @Component({
   selector: 'app-cart-page',
@@ -20,7 +21,7 @@ export class CartPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.store.select(cartSelectors.getCartProducts);
-    this.ids$ = this.store.select(cartSelectors.getCartList);
+    this.ids$ = this.store.select(cartSelectors.getCartIds);
   }
 
   quantityChange(event: any): void {
@@ -37,5 +38,9 @@ export class CartPageComponent implements OnInit {
 
   clearCart(): void {
     this.store.dispatch(new cartActions.ClearCart());
+  }
+
+  goToCheckout(): void {
+    this.store.dispatch(new Go({ path: ['/checkout'] }));
   }
 }

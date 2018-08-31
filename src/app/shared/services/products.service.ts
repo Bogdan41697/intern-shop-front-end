@@ -14,10 +14,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProducts(filters: FiltersObject = {}): Observable<Product[]> {
-    let headers: HttpHeaders = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get<Product[]>(`http://localhost:8000/products?${this.setFilters(filters)}`, {headers});
+    return this.http.get<Product[]>(`http://localhost:8000/products?${this.setFilters(filters)}`);
   }
 
   setFilters(filtersObj): string {

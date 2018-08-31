@@ -15,38 +15,10 @@ export interface CartState {
 
 export const initialCartState: CartState = {
     isEmpty: true,
-    ids: ['1', '2'],
-    products: {
-        '1': {
-            product: {
-                thumbnail: 'https://images-na.ssl-images-amazon.com/images/I/41PhxnsPE4L._SX327_BO1,204,203,200_.jpg',
-                id: '1',
-                title: 'product',
-                description: 'product',
-                stock: 1,
-                price: 99.99,
-                category_id: 'asdsadad',
-                category_title: 'asdasdasd'
-
-            },
-            quantity: 2
-        },
-        '2': {
-            product: {
-                thumbnail: 'https://images-na.ssl-images-amazon.com/images/I/41PhxnsPE4L._SX327_BO1,204,203,200_.jpg',
-                id: '1',
-                title: 'product',
-                description: 'product',
-                stock: 1,
-                price: 99.99,
-                category_id: 'asdsadad',
-                category_title: 'asdasdasd'
-            },
-            quantity: 1
-        }
-    },
-    totalCount: 3,
-    totalSum: 297.99
+    ids: [],
+    products: {},
+    totalCount: 0,
+    totalSum: 0
 };
 
 export function reducer( state: CartState = initialCartState, action: fromCart.Actions): CartState {

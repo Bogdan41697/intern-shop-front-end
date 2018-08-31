@@ -1,0 +1,12 @@
+:host {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.checkout-card {
+  max-width: 500px;
+  margin: 0 auto;
+}

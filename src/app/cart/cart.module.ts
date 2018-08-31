@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { MaterialModule } from '../material/material.module';
 import { CartEffects } from './store/effects/cart.effects';
@@ -20,8 +21,10 @@ import { CheckoutPageComponent } from './containers/checkout-page/checkout-page.
     CommonModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule,
+    ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
+    NgxStripeModule.forRoot('pk_test_vxuPixZMXI3nysGSQ8nvdOq0'),
     StoreModule.forFeature('cart', reducers),
     EffectsModule.forFeature([CartEffects])
   ],

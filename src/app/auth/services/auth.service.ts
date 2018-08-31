@@ -20,11 +20,7 @@ export class AuthService {
   getUser (token: string): Observable<any> {
     localStorage.setItem('token', token);
 
-    const headers: HttpHeaders = new HttpHeaders({
-      'Authorization': `Bearer ${this.getToken()}`
-    });
-
-    return this.http.get(`${this.endpoint}/user`, {headers});
+    return this.http.get(`${this.endpoint}/user`);
   }
 
   logIn(login: string, password: string): Observable<User> {

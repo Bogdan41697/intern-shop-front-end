@@ -25,8 +25,8 @@ export class AuthEffects {
   signIn$: Observable<Action> = this.actions$.pipe(
     ofType(authActions.AUTHENTICATE),
     switchMap((action: authActions.AuthenticateAction) => {
-
-      return this.authService.logIn(action['payload'].login, action['payload'].password)
+      return this.authService
+        .logIn(action['payload'].login, action['payload'].password)
         .pipe(
           map((user: User) => {
             return new AuthenticationSuccessAction({token: user.token});
@@ -58,7 +58,6 @@ export class AuthEffects {
   signInSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(authActions.AUTHENTICATE_SUCCESS),
     switchMap((action: authActions.AuthenticationSuccessAction) => {
-
       return this.authService.getUser(action['payload'].token).pipe(
         map((user: User) => new GetUserInfoSuccessAction(user)),
         map((user: User) => {
@@ -113,7 +112,7 @@ export class AuthEffects {
     map((error: Error) => {
       console.log(error['payload']);
 
-     return new authActions.SignOutAction();
+      return new authActions.SignOutAction();
     })
   );
 

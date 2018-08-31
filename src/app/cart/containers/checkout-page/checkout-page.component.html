@@ -1,3 +1,9 @@
-<p>
-  checkout-page works!
-</p>
+<form (ngSubmit)="buy($event)" [formGroup]="stripeTest">
+  <input type="text" formControlName="name" placeholder="Your name">
+  <input type="email" formControlName="email" placeholder="Your email">
+  <input type="text" formControlName="vaultNumber" placeholder="Number of Nova Poshta's office">
+  <ngx-stripe-card (on)="onChange($event)"></ngx-stripe-card>
+  <button mat-raised-button type="submit" [disabled]="!formIsValid">
+    Buy
+  </button>
+</form>

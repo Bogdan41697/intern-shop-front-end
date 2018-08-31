@@ -9,6 +9,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { reducers, effects, CustomSerializer } from './store';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,11 @@ import { CartModule } from './cart/cart.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor} from './shared/interceptor/token.interceptor';
+import { ResponseInterceptor } from './shared/interceptor/response.interceptor';
+
 import { NotificationService } from './shared/services/notification';
 import { SharedModule } from './shared/shared.module';
 
@@ -53,7 +59,11 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
     NotificationService
+
   ],
   bootstrap: [
     AppComponent

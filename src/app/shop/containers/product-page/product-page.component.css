@@ -1,28 +1,28 @@
 .product-details {
   display: flex;
   flex-wrap: wrap;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   align-items: flex-start;
   justify-content: flex-start;
 
+}
+.spinner-overlay{
+ /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .product-image {
   flex: 0 0 50%;
   height: 500px;
   margin: 0 auto;
   width:auto;
-  position: relative;
-  
 }
 
 .product-image>img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   height: 500px;
   margin: 0 auto;
-  object-fit: scale-down;
+  object-fit: contain;
 }
 .details-avalible {
   width: 100%;
