@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NguCarouselModule } from '@ngu/carousel';
 
 import { MaterialModule } from '../material/material.module';
 
@@ -27,7 +28,8 @@ import { ProductsEffects } from './store/effects/products.effect';
     FormsModule,
     StoreModule.forFeature('shop', reducers),
     EffectsModule.forFeature(effects),
-    FormsModule
+    FormsModule,
+    NguCarouselModule
   ],
   declarations: [
     ProductListComponent,

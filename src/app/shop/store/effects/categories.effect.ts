@@ -15,14 +15,15 @@ export class CategoriesEffects {
   ) {}
 
   @Effect()
-  loadCategories$ = this.actions$.ofType(categoriesActions.LOAD_CATEGORIES).pipe(
+  loadCategories$: any = this.actions$.pipe(
+    ofType(categoriesActions.LOAD_CATEGORIES),
     switchMap(() => {
       return this.fromServices
       .getCategories()
       .pipe(
-        map(categories => new categoriesActions.LoadCategoriesSuccess(categories['categories'])),
-        catchError(error => of(new categoriesActions.LoadCategoriesFail(error)))
-      )
+        map((categories: any) => new categoriesActions.LoadCategoriesSuccess(categories['categories'])),
+        catchError((error: Error) => of(new categoriesActions.LoadCategoriesFail(error)))
+      );
     })
-  ) 
+  );
 }

@@ -3,10 +3,10 @@
 <h4 class="title-self">Price: </h4>
 <form class="side-form">
   <mat-form-field class="half-width">
-    <input matInput placeholder="From" (change)="onFiltersChange(From.value, To.value)" #From>
+    <input matInput placeholder="From" (change)="onFiltersChange(From.value, To.value, category, stock.value)" #From>
   </mat-form-field>
   <mat-form-field class="half-width">
-    <input matInput placeholder="To" (change)="onFiltersChange(From.value, To.value)" #To>
+    <input matInput placeholder="To" (change)="onFiltersChange(From.value, To.value, category, stock.value)" #To>
   </mat-form-field>
 
   <h4 class="title-self">Category: </h4>
@@ -16,8 +16,9 @@
         No any categories
       </mat-option>
     </mat-select>
-      <mat-select placeholder="Category">
-      <mat-option *ngFor="let category of (categories$ | async)" (click)="onFiltersChange(From.value, To.value, category.title)" [value]="category.id">
+
+    <mat-select placeholder="Category">
+      <mat-option *ngFor="let category of (categories$ | async)" (click)="getCategoryName(category.title)" (click)="onFiltersChange(From.value, To.value, category.title, stock.value)" [value]="category.id">
         {{category.title}}
       </mat-option>
     </mat-select>
@@ -25,8 +26,7 @@
 
   <h4 class="title-self">Stock: </h4>
   <mat-form-field class="full-width">
-    <input matInput placeholder="Stock" (change)="onFiltersChange(From.value, To.value, cat.value, stock.value)" #stock>
+    <input matInput placeholder="Stock" (change)="onFiltersChange(From.value, To.value, category, stock.value)" #stock>
   </mat-form-field>
 
-  <!-- <button class="submit" type="button" (click)="onFiltersChange(From.value, To.value)">Submit</button> -->
 </form>

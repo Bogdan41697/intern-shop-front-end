@@ -1,6 +1,6 @@
 import * as fromCategories from './categories.reducer';
 import * as fromProducts from './products.reducer';
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 export interface ShopState {
   products: fromProducts.ProductsState;
@@ -12,6 +12,6 @@ export const reducers: ActionReducerMap<ShopState> = {
   categories: fromCategories.reducer
 };
 
-export const getShopState = createFeatureSelector<ShopState>(
+export const getShopState: MemoizedSelector<{}, ShopState> = createFeatureSelector<ShopState>(
   'shop'
 );

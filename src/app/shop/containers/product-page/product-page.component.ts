@@ -1,9 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Store , select} from '@ngrx/store';
 import { AddToCart } from './../../../cart/store/actions';
 import { Product } from '../../../shared/models/product.model';
-import { Observable } from 'rxjs';
+import * as fromStore from '../../store';
+import * as fromProductsSelectors from '../../store/selectors/products.selector';
+import { CartState } from '../../../cart/store/reducers/cart.reducer';
 import * as productsAction from '../../store/actions';
 import * as productsSelectors from '../../store/selectors';
 
@@ -15,22 +18,23 @@ import * as productsSelectors from '../../store/selectors';
 })
 export class ProductPageComponent implements OnInit {
   id: string;
+  products$: Observable<Product[]>;
   count: number = 1;
   loading$: Observable<boolean>;
   product: Product;
   regex: RegExp = new RegExp(/^[0-9]+$/g);
 
-  constructor(
-      private route: ActivatedRoute,
-      private store: Store<any>,
-
-    ) {}
+  constructor(private route: ActivatedRoute, 
+              private store: Store<CartState>) {
+    this.products$ = this.store.select(fromProductsSelectors.getAllProducts);
+  }
 
   ngOnInit(): void {
-    this.loading$ = this.store.pipe(
-      select(productsSelectors.getProductsLoading)
+    this.loading$ = this.store.pipe(	
+      select(productsSelectors.getProductsLoading)	
     );
     this.getProduct();
+    this.store.dispatch(new fromStore.LoadProducts());
   }
 
   getProduct(): void {

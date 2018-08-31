@@ -12,19 +12,24 @@ import { Category } from '../../../shared/models/category.model';
 })
 export class SidebarComponent {
   category: string = '';
+  categoryRegExp: RegExp = new RegExp(/\d/g);
 
   @Output() filters: EventEmitter<FiltersObject> = new EventEmitter();
   @Input() categories$: Observable<Category[]>;
 
   getCategoryName(category: string): void {
-    this.category = category;
+    if (category.match(this.categoryRegExp)) {
+      return;
+    } else {
+      this.category = category;
+    }
   }
 
-  onFiltersChange(from: number, to: number, category: string = ''): void {
+  onFiltersChange(from: number, to: number, category: string, stock: string): void {
     this.filters.emit({
       price: {from, to},
-      category: category,
-      stock: ''
+      category,
+      stock
     });
   }
 }
